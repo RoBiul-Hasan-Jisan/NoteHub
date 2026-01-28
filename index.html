@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Notes - Modern Note Taking</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">Sticky Notes</h1>
+                <div class="header-controls">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                    <button class="download-all-btn" id="downloadAllBtn">Download All</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="notes-container" id="notesContainer"></main>
+
+        <!-- Toolbar -->
+        <div class="toolbar" id="toolbar">
+            <div class="toolbar-section">
+                <label for="fontFamily">Font:</label>
+                <select id="fontFamily" class="toolbar-select">
+                    <option value="sans-serif">Sans Serif</option>
+                    <option value="serif">Serif</option>
+                    <option value="monospace">Monospace</option>
+                    <option value="cursive">Handwritten</option>
+                </select>
+            </div>
+
+            <div class="toolbar-section">
+                <label for="fontSize">Size:</label>
+                <select id="fontSize" class="toolbar-select">
+                    <option value="12">12px</option>
+                    <option value="14" selected>14px</option>
+                    <option value="16">16px</option>
+                    <option value="18">18px</option>
+                    <option value="20">20px</option>
+                </select>
+            </div>
+
+            <div class="toolbar-section">
+                <label for="lineHeight">Spacing:</label>
+                <select id="lineHeight" class="toolbar-select">
+                    <option value="1.2">Tight</option>
+                    <option value="1.5" selected>Normal</option>
+                    <option value="1.8">Relaxed</option>
+                    <option value="2">Wide</option>
+                </select>
+            </div>
+
+            <div class="toolbar-section">
+                <button class="toolbar-btn" id="boldBtn" title="Bold (Ctrl+B)">
+                    <strong>B</strong>
+                </button>
+                <button class="toolbar-btn" id="italicBtn" title="Italic (Ctrl+I)">
+                    <em>I</em>
+                </button>
+                <button class="toolbar-btn" id="underlineBtn" title="Underline (Ctrl+U)">
+                    <u>U</u>
+                </button>
+            </div>
+
+            <div class="toolbar-section">
+                <label for="colorPicker">Note Color:</label>
+                <input type="color" id="colorPicker" class="color-picker" value="#FFF9C4" title="Pick a note color">
+            </div>
+
+            <div class="toolbar-section">
+                <button class="add-note-btn" id="addNoteBtn">+ Add Note</button>
+            </div>
+        </main>
+
+        <!-- Floating Add Button -->
+        <button class="floating-add-btn" id="floatingAddBtn" title="Add a new note">
+            <span>+</span>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
