@@ -6,8 +6,12 @@ import type { Note, NoteColor } from '@/lib/types'
 export function useNotes(userId: string | undefined) {
   const [notes, setNotes] = useState<Note[]>([])
   const [loading, setLoading] = useState(true)
-  const [saveStatus, setSaveStatus] = useState<'saved' | 'saving' | 'error'>('saved')
-  const saveTimeoutRef = useRef<NodeJS.Timeout>()
+  const [saveStatus, setSaveStatus] = useState<'saved' | 'saving' | 'error'>(
+    'saved'
+  )
+
+  // ✅ FIX: initial value required
+  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // Load notes from localStorage
   useEffect(() => {
@@ -18,13 +22,15 @@ export function useNotes(userId: string | undefined) {
 
     const storageKey = `notes_${userId}`
     const storedNotes = localStorage.getItem(storageKey)
+
     if (storedNotes) {
       try {
         setNotes(JSON.parse(storedNotes))
       } catch (e) {
-        console.error('[v0] Failed to parse stored notes:', e)
+        console.error('Note Hub Failed to parse stored notes:', e)
       }
     }
+
     setLoading(false)
   }, [userId])
 
@@ -44,11 +50,14 @@ export function useNotes(userId: string | undefined) {
       // Debounce save by 500ms
       saveTimeoutRef.current = setTimeout(() => {
         try {
-          localStorage.setItem(`notes_${userId}`, JSON.stringify(updatedNotes))
+          localStorage.setItem(
+            `notes_${userId}`,
+            JSON.stringify(updatedNotes)
+          )
           setSaveStatus('saved')
-          console.log('[v0] Notes saved for user:', userId)
+          console.log('Note Hub Notes saved for user:', userId)
         } catch (e) {
-          console.error('[v0] Failed to save notes:', e)
+          console.error('Note Hub Failed to save notes:', e)
           setSaveStatus('error')
         }
       }, 500)
@@ -77,6 +86,7 @@ export function useNotes(userId: string | undefined) {
         createdAt: Date.now(),
         updatedAt: Date.now(),
       }
+
       saveNotes([newNote, ...notes])
       return newNote
     },
@@ -104,7 +114,9 @@ export function useNotes(userId: string | undefined) {
 
   const togglePin = useCallback(
     (id: string) => {
-      updateNote(id, { isPinned: !notes.find((n) => n.id === id)?.isPinned })
+      const note = notes.find((n) => n.id === id)
+      if (!note) return
+      updateNote(id, { isPinned: !note.isPinned })
     },
     [notes, updateNote]
   )
