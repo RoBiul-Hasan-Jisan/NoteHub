@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   publisher: 'NoteHub',
   
 
-  metadataBase: new URL('https://notehub.vercel.app'), 
+  metadataBase: new URL('https://notehub-eta.vercel.app/'), 
 
   // Open Graph = How it looks on Facebook, LinkedIn, Discord
   openGraph: {
