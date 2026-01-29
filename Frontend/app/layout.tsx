@@ -10,7 +10,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'NoteHub - Smart Sticky Notes',
   description: 'Create, organize, and manage your thoughts with smart sticky notes. Search, filter, and pin your most important notes.',
-  generator: 'v0.app',
+  generator: 'NoteHub',
   icons: {
     icon: [
       {

@@ -24,6 +24,7 @@ export default function Home() {
         <div className="text-4xl mb-4">📝</div>
         <h1 className="text-2xl font-bold text-foreground mb-2">NoteHub</h1>
         <p className="text-muted-foreground">Loading...</p>
+        
       </div>
     </div>
   )
